@@ -1,4 +1,5 @@
 <article>
+    <!-- Details card -->
     <img class="listing-photo" [src]="housingLocation?.photo" alt="Exterior photo of {{housingLocation?.name}}" />
     <section class="listing-description">
         <h2 class="listing-heading">{{housingLocation?.name}}</h2>
@@ -12,8 +13,24 @@
             <li>Does this location have laundry: {{housingLocation?.laundry}}</li>
         </ul>
     </section>
-</article>
 
-<section>
-    <a [routerLink]="['/']">Return to home</a>
-</section>
+    <!-- Application Form -->
+    <section class="listing-apply">
+        <h2 class="section-heading">Apply now to live here</h2>
+        <form [formGroup]="applyForm" (submit)="submitApplication()">
+            <label for="first-name">First Name</label>
+            <input id="first-name" type="text" formControlName="firstName">
+
+            <label for="last-name">Last Name</label>
+            <input id="last-name" type="text" formControlName="lastName">
+
+            <label for="email">Last Name</label>
+            <input id="email" type="email" formControlName="email">
+            <button type="submit" class="primary">Apply Now</button>
+        </form>
+    </section>
+
+    <section style="margin-top: 20px;">
+        <a [routerLink]="['/']">Return home</a>
+    </section>
+</article>

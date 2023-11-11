@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { HousingLocation } from '../housinglocation';
 import { ActivatedRoute } from '@angular/router';
 import { HousingService } from '../services/housing.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-details',
@@ -13,8 +14,22 @@ export class DetailsComponent {
   housingService = inject(HousingService);
   housingLocation: HousingLocation | undefined;
 
+  applyForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl('')
+  });
+
   constructor() {
     const housingLocationId = Number(this.route.snapshot.params['id']);
     this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
+  }
+
+  submitApplication() {
+    this.housingService.submitApplication(
+      this.applyForm.value.firstName ?? '',
+      this.applyForm.value.lastName ?? '',
+      this.applyForm.value.email ?? ''
+    );
   }
 }
