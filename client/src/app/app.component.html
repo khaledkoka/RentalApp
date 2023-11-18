@@ -7,4 +7,13 @@
   <section class="content">
     <router-outlet></router-outlet>
   </section>
+
+  <!-- Test showing users list -->
+  <section>
+    <ul>
+      <li *ngFor="let user of users;">
+        {{user.id}} - {{user.userName}}
+      </li>
+    </ul>
+  </section>
 </main>
